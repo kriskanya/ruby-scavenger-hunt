@@ -32,4 +32,13 @@ class MyVector < Vector
       total_distance += MyVector[n[i], n[i]].distance(Vector[n[i], n[i]])
   end
   total_distance
+
+
+  #Jurnell's class implementation
+  def self.distance(a, *more)
+    if more.length < 1
+      return nil
+    end
+    
+
 end

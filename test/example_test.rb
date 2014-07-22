@@ -1,11 +1,12 @@
 require 'test_helper'
+require 'my_vector'
 
-class ExampleTest < MiniTest::Unit::TestCase
+class VectorTest < MiniTest::Unit::TestCase
 
-  def setup
-    # This is ran before all the tests. Useful
-    # when preparing input data for the objects/methods you
-    # wish to test.
+  def test_add_integer_to_vector
+    v = Vector[1, 2]
+    v.add_integer(2)
+    assert_equal([3, 4], v)
   end
 
 end
