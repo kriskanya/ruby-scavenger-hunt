@@ -1,44 +1,28 @@
 require 'matrix'
 
-class MyVector < Vector
-
-  # you don't need an initialize class because if you wrote one you'd be overwriting Vector
-
-  # def calculate_distance(vector1, vector2)
-  #   distance = vector1 - vector2
-  #   # distance = Math.sqrt((vector1.x - vector2.x)** + (vector1.y - vector2.y)**)
-  #   distance.magnitude
-  # end
-
-
-  # Jurnell's code:
-  def distance(v)
-    Math.sqrt((self[0] - v[0])**2 + (self[1] - v[1])**2)
+class MyVector < Matrix::Vector
+  def distance(vector_final)
+    delta_vector = vector_final - self
+    delta_vector.magnitude
   end
 
-  # # how you would call this
-  # MyVector[1,2].distance(Vector[2,2])
-  #
-  # the MyVector[1,2] part of this (which corresponds to 'self') is like 'this' in Javascript
-
-  def self.pathlength(*n)
-    # how would you do it for two points?
-    # MyVector[1,2].distance(Vector[2,2])
-
-    # n.inject(0) { |sum, number| sum + number}
-
-    total_distance = 0
-    n.each do |i|
-      total_distance += MyVector[n[i], n[i]].distance(Vector[n[i], n[i]])
-  end
-  total_distance
-
-
-  #Jurnell's class implementation
-  def self.distance(a, *more)
-    if more.length < 1
-      return nil
+  def self.path_length(*points)
+    return 0 if points.size < 2
+    total = 0
+    points.each_index do |i|
+      total += points[i].distance(points[i+1]) unless i == points.size - 1
     end
-    
+    total
+  end
+
+  def <<(i)
+    MyVector.elements(self.to_a << i)  # elements is a class method
+    # elements creates a vector from an array
+  end
+
+  def self.angle_between_two_vectors(v1, v2)
+    Math.cos = 
+    # Math.cos(theta) = (vector1[0] * vector1[1] + vector2[0] * vector2[1])/(Math.sqrt(vector1[1] + vector2[1]) * Math.sqrt(vector1[0] + vector2[0]))
+  end
 
 end
